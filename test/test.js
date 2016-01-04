@@ -1,7 +1,6 @@
 'use strict';
 
-var normalizeHeadingsPlugin = require('..'),
-    normalizeHeadings = normalizeHeadingsPlugin();
+var normalizeHeadings = require('..');
 
 var test = require('tape'),
     remark = require('remark');
@@ -36,15 +35,5 @@ test('Multiple top-level headings', function (t) {
 
 test('Level 7', function (t) {
   t.check('hierarchy', 'There is no depth level 7');
-  t.end();
-});
-
-
-test('Plugin', function (t) {
-  var input = load('hierarchy.in');
-  var output = load('hierarchy.out');
-
-  t.deepEqual(remark.use(normalizeHeadingsPlugin).run(input), output,
-              'Works as a plugin for remark');
   t.end();
 });

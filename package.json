@@ -17,8 +17,6 @@
   },
   "keywords": [
     "mdast",
-    "plugin",
-    "markdown",
     "ast",
     "transform",
     "transformation",

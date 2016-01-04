@@ -4,14 +4,20 @@
 
 [![Build Status][travis-badge]][travis] [![Dependency Status][david-badge]][david]
 
+> :warning:
+>
+> This is an AST transformer for [mdast] syntax trees. A [remark] plugin has been split off into [a different project][remark-normalize-headings].
+
 Providing multiple top-level headings per single Markdown document is confusing for tools that assume that there is only a single top-level heading that contains some meta-information (usually title) about the document.
 
-This [`mdast`][mdast] plugin makes sure that there is only one top-level heading in the document by adjusting headings depths accordingly.
+This [mdast] transformer makes sure that there is only one top-level heading in the document by adjusting headings depths accordingly.
 
-Originally extracted from [`mdast-man`][mdast-man].
+Originally extracted from [remark-man].
 
 [mdast]: https://github.com/wooorm/mdast
-[mdast-man]: https://github.com/wooorm/mdast-man
+[remark]: https://github.com/wooorm/remark
+[remark-man]: https://github.com/wooorm/remark-man
+[remark-normalize-headings]: https://github.com/eush77/remark-normalize-headings
 
 [travis]: https://travis-ci.org/eush77/mdast-normalize-headings
 [travis-badge]: https://travis-ci.org/eush77/mdast-normalize-headings.svg
@@ -21,53 +27,92 @@ Originally extracted from [`mdast-man`][mdast-man].
 ## Example
 
 ```js
-var mdast = require('mdast');
-var mdastNormalizeHeadings = require('mdast-normalize-headings');
+var normalizeHeadings = require('mdast-normalize-headings');
 
-var input = '# Title\n\n# Description\n\n## Usage\n\n### Example\n\n## API\n\n# Related';
-// # Title
-//
-// # Description
-//
-// ## Usage
-//
-// ### Example
-//
-// ## API
-//
-// # Related
-//
+ast
+//=> {
+//     "type": "root",
+//     "children": [
+//       {
+//         "type": "heading",
+//         "depth": 1,
+//         "children": [
+//           {
+//             "type": "text",
+//             "value": "title"
+//           }
+//         ]
+//       },
+//       {
+//         "type": "heading",
+//         "depth": 2,
+//         "children": [
+//           {
+//             "type": "text",
+//             "value": "description"
+//           }
+//         ]
+//       },
+//       {
+//         "type": "heading",
+//         "depth": 1,
+//         "children": [
+//           {
+//             "type": "text",
+//             "value": "example"
+//           }
+//         ]
+//       }
+//     ]
+//   }
 
-mdast.use(mdastNormalizeHeadings).process(input)
-// # Title
-//
-// ## Description
-//
-// ### Usage
-//
-// #### Example
-//
-// ### API
-//
-// ## Related
-//
+normalizeHeadings(ast)
+//=> {
+//     "type": "root",
+//     "children": [
+//       {
+//         "type": "heading",
+//         "depth": 1,
+//         "children": [
+//           {
+//             "type": "text",
+//             "value": "title"
+//           }
+//         ]
+//       },
+//       {
+//         "type": "heading",
+//         "depth": 3,
+//         "children": [
+//           {
+//             "type": "text",
+//             "value": "description"
+//           }
+//         ]
+//       },
+//       {
+//         "type": "heading",
+//         "depth": 2,
+//         "children": [
+//           {
+//             "type": "text",
+//             "value": "example"
+//           }
+//         ]
+//       }
+//     ]
+//   }
 ```
 
 ## API
 
-```js
-var mdastNormalizeHeadings = require('mdast-normalize-headings');
+#### `normalizeHeadings(ast)`
 
-mdast.use(mdastNormalizeHeadings)
-```
+Modifies AST in-place. Returns `ast`.
 
-Modifies AST in-place.
+## Related
 
-## CLI
-
-```
-mdast -u mdast-normalize-headings
-```
+- [remark-normalize-headings] — [remark] plugin wrapper.
 
 ## Install
 
