@@ -14,7 +14,7 @@ This [mdast][] transformer makes sure that there is only one top-level heading i
 
 Originally extracted from [remark-man][].
 
-[mdast]: https://github.com/wooorm/mdast
+[mdast]: https://github.com/syntax-tree/mdast
 [remark]: https://github.com/wooorm/remark
 [remark-man]: https://github.com/wooorm/remark-man
 [remark-normalize-headings]: https://github.com/eush77/remark-normalize-headings
