@@ -10,9 +10,10 @@ var fs = require('fs'),
 
 
 var load = function (filename) {
-  filename = path.join(__dirname, filename);
-  var markdown = fs.readFileSync(filename, { encoding: 'utf8' });
-  return remark.parse(markdown, { position: false });
+  var markdown = fs.readFileSync(path.join(__dirname, filename));
+  return remark()
+    .use({settings: {position: false}})
+    .parse(markdown);
 };
 
 
