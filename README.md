@@ -6,13 +6,13 @@
 
 > :warning:
 >
-> This is an AST transformer for [mdast] syntax trees. A [remark] plugin has been split off into [a different project][remark-normalize-headings].
+> This is an AST transformer for [mdast][] syntax trees. A [remark][] plugin has been split off into [a different project][remark-normalize-headings][].
 
 Providing multiple top-level headings per single Markdown document is confusing for tools that assume that there is only a single top-level heading that contains some meta-information (usually title) about the document.
 
-This [mdast] transformer makes sure that there is only one top-level heading in the document by adjusting headings depths accordingly.
+This [mdast][] transformer makes sure that there is only one top-level heading in the document by adjusting headings depths accordingly.
 
-Originally extracted from [remark-man].
+Originally extracted from [remark-man][].
 
 [mdast]: https://github.com/wooorm/mdast
 [remark]: https://github.com/wooorm/remark
@@ -112,7 +112,7 @@ Modifies AST in-place. Returns `ast`.
 
 ## Related
 
-- [remark-normalize-headings] — [remark] plugin wrapper.
+-   [remark-normalize-headings][] — [remark][] plugin wrapper.
 
 ## Install
 
