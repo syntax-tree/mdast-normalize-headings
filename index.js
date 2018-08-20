@@ -1,32 +1,47 @@
-'use strict';
+'use strict'
 
-var visit = require('unist-util-visit');
+var visit = require('unist-util-visit')
 
+module.exports = normalizeHeadings
 
-module.exports = function (ast) {
-  var title;
-  var titleCount = 0;
+var max = 6
 
-  visit(ast, 'heading', function (node) {
-    if (node.depth == 1 && !titleCount++) {
-      title = node;
+function normalizeHeadings(tree) {
+  var multiple
+  var first
+  var title
+
+  visit(tree, 'heading', infer)
+
+  // If there are no titles, but there is a first heading.
+  if (!title && first) {
+    first.depth = 1
+  }
+
+  // If there are multiple titles.
+  if (multiple) {
+    visit(tree, 'heading', increase)
+  }
+
+  return tree
+
+  function infer(node) {
+    if (!first) {
+      first = node
     }
-  });
 
-  if (!titleCount) {
-    visit(ast, 'heading', function (node) {
-      node.depth = 1;
-      return false;
-    });
-  }
-
-  if (titleCount > 1) {
-    visit(ast, 'heading', function (node) {
-      if (node !== title && node.depth < 6) {
-        node.depth += 1;
+    if (node.depth === 1) {
+      if (title) {
+        multiple = true
+      } else {
+        title = node
       }
-    });
+    }
   }
 
-  return ast;
-};
+  function increase(node) {
+    if (node !== title && node.depth < max) {
+      node.depth++
+    }
+  }
+}
