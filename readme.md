@@ -1,121 +1,101 @@
-[![npm](https://nodei.co/npm/mdast-normalize-headings.png)](https://npmjs.com/package/mdast-normalize-headings)
+# mdast-normalize-headings [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-# mdast-normalize-headings
+Providing multiple top-level headings per single markdown document is confusing
+for tools that assume that there is only a single top-level heading that
+contains some meta-information (usually title) about the document.
 
-[![Build Status][travis-badge]][travis] [![Dependency Status][david-badge]][david]
+This [**mdast**][mdast] utility makes sure that there is only one top-level
+heading in the document by adjusting headings depths accordingly.
 
-Providing multiple top-level headings per single Markdown document is confusing for tools that assume that there is only a single top-level heading that contains some meta-information (usually title) about the document.
+Originally extracted from [`remark-man`][man].
 
-This [mdast][] transformer makes sure that there is only one top-level heading in the document by adjusting headings depths accordingly.
+## Installation
 
-Originally extracted from [remark-man][].
+[npm][]:
 
-[mdast]: https://github.com/syntax-tree/mdast
-[remark]: https://github.com/wooorm/remark
-[remark-man]: https://github.com/wooorm/remark-man
-[remark-normalize-headings]: https://github.com/eush77/remark-normalize-headings
+```bash
+npm install mdast-normalize-headings
+```
 
-[travis]: https://travis-ci.org/eush77/mdast-normalize-headings
-[travis-badge]: https://travis-ci.org/eush77/mdast-normalize-headings.svg
-[david]: https://david-dm.org/eush77/mdast-normalize-headings
-[david-badge]: https://david-dm.org/eush77/mdast-normalize-headings.png
-
-## Example
+## Usage
 
 ```js
-var normalizeHeadings = require('mdast-normalize-headings');
+var u = require('unist-builder')
+var normalizeHeadings = require('mdast-normalize-headings')
 
-ast
-//=> {
-//     "type": "root",
-//     "children": [
-//       {
-//         "type": "heading",
-//         "depth": 1,
-//         "children": [
-//           {
-//             "type": "text",
-//             "value": "title"
-//           }
-//         ]
-//       },
-//       {
-//         "type": "heading",
-//         "depth": 2,
-//         "children": [
-//           {
-//             "type": "text",
-//             "value": "description"
-//           }
-//         ]
-//       },
-//       {
-//         "type": "heading",
-//         "depth": 1,
-//         "children": [
-//           {
-//             "type": "text",
-//             "value": "example"
-//           }
-//         ]
-//       }
-//     ]
-//   }
+var tree = u('root', [
+  u('heading', {depth: 1}, [u('text', 'title')]),
+  u('heading', {depth: 2}, [u('text', 'description')]),
+  u('heading', {depth: 1}, [u('text', 'example')])
+])
 
-normalizeHeadings(ast)
-//=> {
-//     "type": "root",
-//     "children": [
-//       {
-//         "type": "heading",
-//         "depth": 1,
-//         "children": [
-//           {
-//             "type": "text",
-//             "value": "title"
-//           }
-//         ]
-//       },
-//       {
-//         "type": "heading",
-//         "depth": 3,
-//         "children": [
-//           {
-//             "type": "text",
-//             "value": "description"
-//           }
-//         ]
-//       },
-//       {
-//         "type": "heading",
-//         "depth": 2,
-//         "children": [
-//           {
-//             "type": "text",
-//             "value": "example"
-//           }
-//         ]
-//       }
-//     ]
-//   }
+console.log(tree)
+
+normalizeHeadings(tree)
+
+console.log(tree)
+```
+
+Yields:
+
+```js
+{ type: 'root',
+  children:
+   [ { type: 'heading', depth: 1, children: [Array] },
+     { type: 'heading', depth: 2, children: [Array] },
+     { type: 'heading', depth: 1, children: [Array] } ] }
+{ type: 'root',
+  children:
+   [ { type: 'heading', depth: 1, children: [Array] },
+     { type: 'heading', depth: 3, children: [Array] },
+     { type: 'heading', depth: 2, children: [Array] } ] }
 ```
 
 ## API
 
-#### `normalizeHeadings(ast)`
+### `normalizeHeadings(tree)`
 
-Modifies AST in-place. Returns `ast`.
+Modifies tree in-place.  Returns `tree`.
 
 ## Related
 
--   [remark-normalize-headings][] — [remark][] plugin wrapper.
+*   [`remark-normalize-headings`][normalize-headings]
+    — [**remark**][remark] plugin wrapper
 
-## Install
+## Contribute
 
-```
-npm install mdast-normalize-headings
-```
+See [`contributing.md` in `syntax-tree/unist`][contributing] for ways to get
+started.
+
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
 
 ## License
 
-MIT
+[MIT][license] © Eugene Sharygin
+
+<!-- Definitions -->
+
+[travis-badge]: https://img.shields.io/travis/syntax-tree/mdast-normalize-headings.svg
+
+[travis]: https://travis-ci.org/syntax-tree/mdast-normalize-headings
+
+[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-normalize-headings.svg
+
+[codecov]: https://codecov.io/github/syntax-tree/mdast-normalize-headings
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[license]: license
+
+[contributing]: https://github.com/syntax-tree/unist/blob/master/contributing.md
+
+[coc]: https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md
+
+[mdast]: https://github.com/syntax-tree/mdast
+
+[remark]: https://github.com/remarkjs/remark
+
+[man]: https://github.com/remarkjs/remark-man
+
+[normalize-headings]: https://github.com/remarkjs/remark-normalize-headings
