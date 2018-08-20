@@ -33,5 +33,5 @@ function check(test, message) {
 }
 
 function load(basename) {
-  return proc.parse(fs.readFileSync(path.join(__dirname, basename)))
+  return proc.parse(fs.readFileSync(path.join(__dirname, 'fixture', basename)))
 }
