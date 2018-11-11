@@ -1,4 +1,4 @@
-# mdast-normalize-headings [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# mdast-normalize-headings [![Build][build-badge]][build] [![Coverage][coverage-badge]][coverage] [![Downloads][downloads-badge]][downloads] [![Chat][chat-badge]][chat]
 
 Providing multiple top-level headings per single markdown document is confusing
 for tools that assume that there is only a single top-level heading that
@@ -76,13 +76,21 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/syntax-tree/mdast-normalize-headings.svg
+[build-badge]: https://img.shields.io/travis/syntax-tree/mdast-normalize-headings.svg
 
-[travis]: https://travis-ci.org/syntax-tree/mdast-normalize-headings
+[build]: https://travis-ci.org/syntax-tree/mdast-normalize-headings
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-normalize-headings.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-normalize-headings.svg
 
-[codecov]: https://codecov.io/github/syntax-tree/mdast-normalize-headings
+[coverage]: https://codecov.io/github/syntax-tree/mdast-normalize-headings
+
+[downloads-badge]: https://img.shields.io/npm/dm/mdast-normalize-headings.svg
+
+[downloads]: https://www.npmjs.com/package/mdast-normalize-headings
+
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/remark
 
 [npm]: https://docs.npmjs.com/cli/install
 
