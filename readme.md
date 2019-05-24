@@ -8,20 +8,18 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
+[**mdast**][mdast] utility to make sure that there is only one top-level heading
+in the document by adjusting headings depths accordingly.
+
 Providing multiple top-level headings per single markdown document is confusing
 for tools that assume that there is only a single top-level heading that
 contains some meta-information (usually title) about the document.
 
-This [**mdast**][mdast] utility makes sure that there is only one top-level
-heading in the document by adjusting headings depths accordingly.
-
-Originally extracted from [`remark-man`][man].
-
-## Installation
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install mdast-normalize-headings
 ```
 
@@ -63,7 +61,8 @@ Yields:
 
 ### `normalizeHeadings(tree)`
 
-Modifies tree in-place.  Returns `tree`.
+Modifies [tree][] in-place.
+Returns `tree`.
 
 ## Related
 
@@ -72,11 +71,13 @@ Modifies tree in-place.  Returns `tree`.
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/unist`][contributing] for ways to get
+See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
 started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -114,14 +115,16 @@ repository, organisation, or community you agree to abide by its terms.
 
 [license]: license
 
-[contributing]: https://github.com/syntax-tree/unist/blob/master/contributing.md
+[contributing]: https://github.com/syntax-tree/.github/blob/master/contributing.md
 
-[coc]: https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md
+[support]: https://github.com/syntax-tree/.github/blob/master/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/master/code-of-conduct.md
 
 [mdast]: https://github.com/syntax-tree/mdast
 
 [remark]: https://github.com/remarkjs/remark
 
-[man]: https://github.com/remarkjs/remark-man
-
 [normalize-headings]: https://github.com/remarkjs/remark-normalize-headings
+
+[tree]: https://github.com/syntax-tree/unist#tree
