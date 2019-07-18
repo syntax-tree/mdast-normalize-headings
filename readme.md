@@ -66,8 +66,8 @@ Returns `tree`.
 
 ## Security
 
-Use of `mdast-util-to-nlcst` does not involve [**hast**][hast] so there are no
-openings for [cross-site scripting (XSS)][xss] attacks.
+Use of `mdast-normalize-headings` does not involve [**hast**][hast] so there are
+no openings for [cross-site scripting (XSS)][xss] attacks.
 
 ## Related
 
