@@ -64,6 +64,11 @@ Yields:
 Modifies [tree][] in-place.
 Returns `tree`.
 
+## Security
+
+Use of `mdast-util-to-nlcst` does not involve [**hast**][hast] so there are no
+openings for [cross-site scripting (XSS)][xss] attacks.
+
 ## Related
 
 *   [`remark-normalize-headings`][normalize-headings]
@@ -128,3 +133,7 @@ abide by its terms.
 [normalize-headings]: https://github.com/remarkjs/remark-normalize-headings
 
 [tree]: https://github.com/syntax-tree/unist#tree
+
+[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
+
+[hast]: https://github.com/syntax-tree/hast
