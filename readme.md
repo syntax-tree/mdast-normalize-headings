@@ -73,6 +73,8 @@ no openings for [cross-site scripting (XSS)][xss] attacks.
 
 *   [`remark-normalize-headings`][normalize-headings]
     — [**remark**][remark] plugin wrapper
+*   [`mdast-util-heading-range`](https://github.com/syntax-tree/mdast-util-heading-range)
+    — use headings as ranges
 
 ## Contribute
 
