@@ -10,7 +10,7 @@ var proc = remark().use({settings: {position: false}})
 
 test.Test.prototype.check = check
 
-test('Multiple top-level headings', function(t) {
+test('Multiple top-level headings', function (t) {
   t.check('no-headings', 'No-op if there is no headings')
   t.check('no-titles', 'No-op if there is no top-level headings')
   t.check('one-title', 'No-op if there is a single top-level heading')
@@ -19,7 +19,7 @@ test('Multiple top-level headings', function(t) {
   t.end()
 })
 
-test('Level 7', function(t) {
+test('Level 7', function (t) {
   t.check('hierarchy', 'There is no depth level 7')
   t.end()
 })
