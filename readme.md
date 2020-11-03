@@ -92,9 +92,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/syntax-tree/mdast-normalize-headings.svg
+[build-badge]: https://github.com/syntax-tree/mdast-normalize-headings/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/syntax-tree/mdast-normalize-headings
+[build]: https://github.com/syntax-tree/mdast-normalize-headings/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/mdast-normalize-headings.svg
 
