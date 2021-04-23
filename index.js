@@ -1,10 +1,26 @@
+/**
+ * @typedef {import('unist').Node} Node
+ * @typedef {import('mdast').Heading} Heading
+ */
+
 import {visit} from 'unist-util-visit'
 
 var max = 6
 
+/**
+ * Make sure that there is only one top-level heading in the document by
+ * adjusting headings depths accordingly.
+ *
+ * @template {Node} T
+ * @param {T} tree
+ * @returns {T}
+ */
 export function normalizeHeadings(tree) {
+  /** @type {boolean} */
   var multiple
+  /** @type {Heading} */
   var first
+  /** @type {Heading} */
   var title
 
   visit(tree, 'heading', infer)
@@ -21,6 +37,9 @@ export function normalizeHeadings(tree) {
 
   return tree
 
+  /**
+   * @param {Heading} node
+   */
   function infer(node) {
     if (!first) {
       first = node
@@ -35,6 +54,9 @@ export function normalizeHeadings(tree) {
     }
   }
 
+  /**
+   * @param {Heading} node
+   */
   function increase(node) {
     if (node !== title && node.depth < max) {
       node.depth++

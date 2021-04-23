@@ -19,6 +19,11 @@ test('Level 7', function (t) {
   t.end()
 })
 
+/**
+ * @param {import('tape').Test} t
+ * @param {string} test
+ * @param {string} message
+ */
 function check(t, test, message) {
   var input = fs.readFileSync(path.join('test', 'fixture', test + '.in'))
   var output = fs.readFileSync(path.join('test', 'fixture', test + '.out'))
