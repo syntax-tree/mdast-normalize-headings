@@ -17,6 +17,9 @@ contains some meta-information (usually title) about the document.
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -26,8 +29,8 @@ npm install mdast-normalize-headings
 ## Use
 
 ```js
-var u = require('unist-builder')
-var normalizeHeadings = require('mdast-normalize-headings')
+import {u} from 'unist-builder'
+import {normalizeHeadings} from 'mdast-normalize-headings'
 
 var tree = u('root', [
   u('heading', {depth: 1}, [u('text', 'title')]),
@@ -45,19 +48,28 @@ console.log(tree)
 Yields:
 
 ```js
-{ type: 'root',
-  children:
-   [ { type: 'heading', depth: 1, children: [Array] },
-     { type: 'heading', depth: 2, children: [Array] },
-     { type: 'heading', depth: 1, children: [Array] } ] }
-{ type: 'root',
-  children:
-   [ { type: 'heading', depth: 1, children: [Array] },
-     { type: 'heading', depth: 3, children: [Array] },
-     { type: 'heading', depth: 2, children: [Array] } ] }
+{
+  type: 'root',
+  children: [
+    {type: 'heading', depth: 1, children: [Array]},
+    {type: 'heading', depth: 2, children: [Array]},
+    {type: 'heading', depth: 1, children: [Array]}
+  ]
+}
+{
+  type: 'root',
+  children: [
+    {type: 'heading', depth: 1, children: [Array]},
+    {type: 'heading', depth: 3, children: [Array]},
+    {type: 'heading', depth: 2, children: [Array]}
+  ]
+}
 ```
 
 ## API
+
+This package exports the following identifiers: `normalizeHeadings`.
+There is no default export.
 
 ### `normalizeHeadings(tree)`
 

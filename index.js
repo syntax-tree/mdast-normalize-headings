@@ -1,12 +1,8 @@
-'use strict'
-
-var visit = require('unist-util-visit')
-
-module.exports = normalizeHeadings
+import {visit} from 'unist-util-visit'
 
 var max = 6
 
-function normalizeHeadings(tree) {
+export function normalizeHeadings(tree) {
   var multiple
   var first
   var title

@@ -1,11 +1,9 @@
-'use strict'
-
-var fs = require('fs')
-var path = require('path')
-var test = require('tape')
-var remark = require('remark')
-var remove = require('unist-util-remove-position')
-var normalizeHeadings = require('..')
+import fs from 'fs'
+import path from 'path'
+import test from 'tape'
+import remark from 'remark'
+import {removePosition} from 'unist-util-remove-position'
+import {normalizeHeadings} from '../index.js'
 
 test('Multiple top-level headings', function (t) {
   check(t, 'no-headings', 'No-op if there is no headings')
@@ -22,12 +20,12 @@ test('Level 7', function (t) {
 })
 
 function check(t, test, message) {
-  var input = fs.readFileSync(path.join(__dirname, 'fixture', test + '.in'))
-  var output = fs.readFileSync(path.join(__dirname, 'fixture', test + '.out'))
+  var input = fs.readFileSync(path.join('test', 'fixture', test + '.in'))
+  var output = fs.readFileSync(path.join('test', 'fixture', test + '.out'))
 
   t.deepEqual(
-    remove(normalizeHeadings(remark().parse(input)), true),
-    remove(remark().parse(output), true),
+    removePosition(normalizeHeadings(remark().parse(input)), true),
+    removePosition(remark().parse(output), true),
     message
   )
 }
