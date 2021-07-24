@@ -32,7 +32,7 @@ npm install mdast-normalize-headings
 import {u} from 'unist-builder'
 import {normalizeHeadings} from 'mdast-normalize-headings'
 
-var tree = u('root', [
+const tree = u('root', [
   u('heading', {depth: 1}, [u('text', 'title')]),
   u('heading', {depth: 2}, [u('text', 'description')]),
   u('heading', {depth: 1}, [u('text', 'example')])

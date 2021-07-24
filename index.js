@@ -5,7 +5,7 @@
 
 import {visit} from 'unist-util-visit'
 
-var max = 6
+const max = 6
 
 /**
  * Make sure that there is only one top-level heading in the document by
@@ -17,13 +17,30 @@ var max = 6
  */
 export function normalizeHeadings(tree) {
   /** @type {boolean} */
-  var multiple
+  let multiple
   /** @type {Heading} */
-  var first
+  let first
   /** @type {Heading} */
-  var title
+  let title
 
-  visit(tree, 'heading', infer)
+  visit(
+    tree,
+    'heading',
+    /** @type {import('unist-util-visit').Visitor<Heading>} */
+    (node) => {
+      if (!first) {
+        first = node
+      }
+
+      if (node.depth === 1) {
+        if (title) {
+          multiple = true
+        } else {
+          title = node
+        }
+      }
+    }
+  )
 
   // If there are no titles, but there is a first heading.
   if (!title && first) {
@@ -32,34 +49,17 @@ export function normalizeHeadings(tree) {
 
   // If there are multiple titles.
   if (multiple) {
-    visit(tree, 'heading', increase)
+    visit(
+      tree,
+      'heading',
+      /** @type {import('unist-util-visit').Visitor<Heading>} */
+      (node) => {
+        if (node !== title && node.depth < max) {
+          node.depth++
+        }
+      }
+    )
   }
 
   return tree
-
-  /**
-   * @param {Heading} node
-   */
-  function infer(node) {
-    if (!first) {
-      first = node
-    }
-
-    if (node.depth === 1) {
-      if (title) {
-        multiple = true
-      } else {
-        title = node
-      }
-    }
-  }
-
-  /**
-   * @param {Heading} node
-   */
-  function increase(node) {
-    if (node !== title && node.depth < max) {
-      node.depth++
-    }
-  }
 }

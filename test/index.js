@@ -5,7 +5,7 @@ import remark from 'remark'
 import {removePosition} from 'unist-util-remove-position'
 import {normalizeHeadings} from '../index.js'
 
-test('Multiple top-level headings', function (t) {
+test('Multiple top-level headings', (t) => {
   check(t, 'no-headings', 'No-op if there is no headings')
   check(t, 'no-titles', 'No-op if there is no top-level headings')
   check(t, 'one-title', 'No-op if there is a single top-level heading')
@@ -14,7 +14,7 @@ test('Multiple top-level headings', function (t) {
   t.end()
 })
 
-test('Level 7', function (t) {
+test('Level 7', (t) => {
   check(t, 'hierarchy', 'There is no depth level 7')
   t.end()
 })
@@ -25,8 +25,8 @@ test('Level 7', function (t) {
  * @param {string} message
  */
 function check(t, test, message) {
-  var input = fs.readFileSync(path.join('test', 'fixture', test + '.in'))
-  var output = fs.readFileSync(path.join('test', 'fixture', test + '.out'))
+  const input = fs.readFileSync(path.join('test', 'fixture', test + '.in'))
+  const output = fs.readFileSync(path.join('test', 'fixture', test + '.out'))
 
   t.deepEqual(
     removePosition(normalizeHeadings(remark().parse(input)), true),
