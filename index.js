@@ -16,11 +16,11 @@ const max = 6
  * @returns {T}
  */
 export function normalizeHeadings(tree) {
-  /** @type {boolean} */
+  /** @type {boolean|undefined} */
   let multiple
-  /** @type {Heading} */
+  /** @type {Heading|undefined} */
   let first
-  /** @type {Heading} */
+  /** @type {Heading|undefined} */
   let title
 
   visit(
