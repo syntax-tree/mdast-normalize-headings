@@ -1,3 +1,7 @@
+/**
+ * @typedef {import('mdast').Root} Root
+ */
+
 import fs from 'node:fs'
 import path from 'node:path'
 import test from 'tape'
@@ -27,9 +31,10 @@ test('Level 7', (t) => {
 function check(t, test, message) {
   const input = fs.readFileSync(path.join('test', 'fixture', test + '.in'))
   const output = fs.readFileSync(path.join('test', 'fixture', test + '.out'))
+  const root = /** @type {Root} */ (remark().parse(input))
 
   t.deepEqual(
-    removePosition(normalizeHeadings(remark().parse(input)), true),
+    removePosition(normalizeHeadings(root), true),
     removePosition(remark().parse(output), true),
     message
   )

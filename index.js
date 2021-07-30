@@ -1,5 +1,5 @@
 /**
- * @typedef {import('unist').Node} Node
+ * @typedef {import('mdast').Root|import('mdast').Content} Node
  * @typedef {import('mdast').Heading} Heading
  */
 
@@ -23,24 +23,19 @@ export function normalizeHeadings(tree) {
   /** @type {Heading|undefined} */
   let title
 
-  visit(
-    tree,
-    'heading',
-    /** @type {import('unist-util-visit').Visitor<Heading>} */
-    (node) => {
-      if (!first) {
-        first = node
-      }
+  visit(tree, 'heading', (node) => {
+    if (!first) {
+      first = node
+    }
 
-      if (node.depth === 1) {
-        if (title) {
-          multiple = true
-        } else {
-          title = node
-        }
+    if (node.depth === 1) {
+      if (title) {
+        multiple = true
+      } else {
+        title = node
       }
     }
-  )
+  })
 
   // If there are no titles, but there is a first heading.
   if (!title && first) {
@@ -49,16 +44,11 @@ export function normalizeHeadings(tree) {
 
   // If there are multiple titles.
   if (multiple) {
-    visit(
-      tree,
-      'heading',
-      /** @type {import('unist-util-visit').Visitor<Heading>} */
-      (node) => {
-        if (node !== title && node.depth < max) {
-          node.depth++
-        }
+    visit(tree, 'heading', (node) => {
+      if (node !== title && node.depth < max) {
+        node.depth++
       }
-    )
+    })
   }
 
   return tree
