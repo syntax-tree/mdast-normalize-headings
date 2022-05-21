@@ -5,7 +5,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import test from 'tape'
-import remark from 'remark'
+import {remark} from 'remark'
 import {removePosition} from 'unist-util-remove-position'
 import {normalizeHeadings} from '../index.js'
 
