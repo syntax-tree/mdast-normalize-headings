@@ -8,22 +8,59 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**mdast**][mdast] utility to make sure that there is only one top-level heading
-in the document by adjusting headings depths accordingly.
+[mdast][] utility to normalize heading depths.
 
-Providing multiple top-level headings per single markdown document is confusing
-for tools that assume that there is only a single top-level heading that
-contains some meta-information (usually title) about the document.
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`normalizeHeadings(tree)`](#normalizeheadingstree)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package is a utility that normalizes the heading structure of documents.
+It makes sure one top-level heading is used by adjusting headings depths
+accordingly.
+
+## When should I use this?
+
+This utility can be useful when working with tools that assume that there is a
+single top-level heading that contains some meta-information (usually a title)
+about the document.
+
+A plugin, [`remark-normalize-headings`][remark-normalize-headings], exists that
+does the same but for [remark][].
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
 
 ```sh
-npm install mdast-normalize-headings
+npm install mdast-util-normalize-headings
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {normalizeHeadings} from 'https://esm.sh/mdast-util-normalize-headings@3'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {normalizeHeadings} from 'https://esm.sh/mdast-util-normalize-headings@3?bundle'
+</script>
 ```
 
 ## Use
@@ -38,8 +75,6 @@ const tree = u('root', [
   u('heading', {depth: 1}, [u('text', 'example')])
 ])
 
-console.log(tree)
-
 normalizeHeadings(tree)
 
 console.log(tree)
@@ -52,14 +87,6 @@ Yields:
   type: 'root',
   children: [
     {type: 'heading', depth: 1, children: [Array]},
-    {type: 'heading', depth: 2, children: [Array]},
-    {type: 'heading', depth: 1, children: [Array]}
-  ]
-}
-{
-  type: 'root',
-  children: [
-    {type: 'heading', depth: 1, children: [Array]},
     {type: 'heading', depth: 3, children: [Array]},
     {type: 'heading', depth: 2, children: [Array]}
   ]
@@ -68,30 +95,43 @@ Yields:
 
 ## API
 
-This package exports the following identifiers: `normalizeHeadings`.
+This package exports the identifier `normalizeHeadings`.
 There is no default export.
 
 ### `normalizeHeadings(tree)`
 
-Modifies [tree][] in-place.
-Returns `tree`.
+Normalize heading depths.
+
+###### Returns
+
+The given `tree` ([`Node`][node]).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+There are no additional exported types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Security
 
-Use of `mdast-normalize-headings` does not involve [**hast**][hast] so there are
-no openings for [cross-site scripting (XSS)][xss] attacks.
+Use of `mdast-normalize-headings` does not involve **[hast][]** so there are no
+openings for [cross-site scripting (XSS)][xss] attacks.
 
 ## Related
 
-*   [`remark-normalize-headings`][normalize-headings]
-    — [**remark**][remark] plugin wrapper
-*   [`mdast-util-heading-range`](https://github.com/syntax-tree/mdast-util-heading-range)
-    — use headings as ranges
+*   [`remark-normalize-headings`][remark-normalize-headings]
+    — remark plugin
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
-started.
+See [`contributing.md`][contributing] in [`syntax-tree/.github`][health] for
+ways to get started.
 See [`support.md`][support] for ways to get help.
 
 This project has a [code of conduct][coc].
@@ -132,22 +172,30 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
 [license]: license
 
-[contributing]: https://github.com/syntax-tree/.github/blob/HEAD/contributing.md
+[health]: https://github.com/syntax-tree/.github
 
-[support]: https://github.com/syntax-tree/.github/blob/HEAD/support.md
+[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
 
-[coc]: https://github.com/syntax-tree/.github/blob/HEAD/code-of-conduct.md
+[support]: https://github.com/syntax-tree/.github/blob/main/support.md
 
-[mdast]: https://github.com/syntax-tree/mdast
-
-[remark]: https://github.com/remarkjs/remark
-
-[normalize-headings]: https://github.com/remarkjs/remark-normalize-headings
-
-[tree]: https://github.com/syntax-tree/unist#tree
+[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
 
 [xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
 
 [hast]: https://github.com/syntax-tree/hast
+
+[mdast]: https://github.com/syntax-tree/mdast
+
+[node]: https://github.com/syntax-tree/mdast#node
+
+[remark]: https://github.com/remarkjs/remark
+
+[remark-normalize-headings]: https://github.com/remarkjs/remark-normalize-headings
