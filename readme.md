@@ -43,7 +43,7 @@ does the same but for [remark][].
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+In Node.js (version 14.14+ and 16.0+), install with [npm][]:
 
 ```sh
 npm install mdast-util-normalize-headings
@@ -95,27 +95,34 @@ Yields:
 
 ## API
 
-This package exports the identifier `normalizeHeadings`.
+This package exports the identifier
+[`normalizeHeadings`][api-normalizeheadings].
 There is no default export.
 
 ### `normalizeHeadings(tree)`
 
-Normalize heading depths.
+Make sure that there is only one top-level heading in the document by adjusting
+headings depths accordingly.
+
+###### Parameters
+
+*   `tree` ([`Node`][node])
+    — tree to change
 
 ###### Returns
 
-The given `tree` ([`Node`][node]).
+Given, modified, `tree` ([`Node`][node]).
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-There are no additional exported types.
+It exports no additional types.
 
 ## Compatibility
 
 Projects maintained by the unified collective are compatible with all maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+As of now, that is Node.js 14.14+ and 16.0+.
 Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Security
@@ -199,3 +206,5 @@ abide by its terms.
 [remark]: https://github.com/remarkjs/remark
 
 [remark-normalize-headings]: https://github.com/remarkjs/remark-normalize-headings
+
+[api-normalizeheadings]: #normalizeheadingstree
