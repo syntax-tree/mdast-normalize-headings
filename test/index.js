@@ -5,15 +5,16 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import test from 'node:test'
+import {normalizeHeadings} from 'mdast-normalize-headings'
 import {fromMarkdown} from 'mdast-util-from-markdown'
 import {removePosition} from 'unist-util-remove-position'
-import {normalizeHeadings} from '../index.js'
 
 test('normalizeHeadings', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('../index.js')).sort(), [
-      'normalizeHeadings'
-    ])
+    assert.deepEqual(
+      Object.keys(await import('mdast-normalize-headings')).sort(),
+      ['normalizeHeadings']
+    )
   })
 
   /** @type {Record<string, string>} */

@@ -66,8 +66,8 @@ In browsers with [`esm.sh`][esmsh]:
 ## Use
 
 ```js
-import {u} from 'unist-builder'
 import {normalizeHeadings} from 'mdast-normalize-headings'
+import {u} from 'unist-builder'
 
 const tree = u('root', [
   u('heading', {depth: 1}, [u('text', 'title')]),
