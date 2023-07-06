@@ -82,6 +82,16 @@
     "strict": true
   },
   "xo": {
+    "overrides": [
+      {
+        "files": [
+          "test/**/*.js"
+        ],
+        "rules": {
+          "no-await-in-loop": "off"
+        }
+      }
+    ],
     "prettier": true
   }
 }
