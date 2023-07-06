@@ -111,7 +111,7 @@ headings depths accordingly.
 
 ###### Returns
 
-Given, modified, `tree` ([`Node`][node]).
+Nothing (`undefined`).
 
 ## Types
 

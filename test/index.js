@@ -36,12 +36,12 @@ test('normalizeHeadings', async function (t) {
       )
       const actual = fromMarkdown(input)
       const expected = fromMarkdown(output)
-      normalizeHeadings(actual)
 
-      assert.deepEqual(
-        removePosition(actual, true),
-        removePosition(expected, true)
-      )
+      normalizeHeadings(actual)
+      removePosition(actual, true)
+      removePosition(expected, true)
+
+      assert.deepEqual(actual, expected)
     })
   }
 })
