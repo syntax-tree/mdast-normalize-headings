@@ -52,14 +52,14 @@ npm install mdast-util-normalize-headings
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {normalizeHeadings} from 'https://esm.sh/mdast-util-normalize-headings@3'
+import {normalizeHeadings} from 'https://esm.sh/mdast-util-normalize-headings@4'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {normalizeHeadings} from 'https://esm.sh/mdast-util-normalize-headings@3?bundle'
+  import {normalizeHeadings} from 'https://esm.sh/mdast-util-normalize-headings@4?bundle'
 </script>
 ```
 
