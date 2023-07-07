@@ -35,12 +35,13 @@ test('normalizeHeadings', async function (t) {
       const output = await fs.readFile(
         new URL('fixture/' + name + '.out', import.meta.url)
       )
-      const actual = fromMarkdown(input)
-      const expected = fromMarkdown(output)
+      // To do: remove casts when `mdast-util-from-markdown` is released.
+      const actual = /** @type {Root} */ (fromMarkdown(input))
+      const expected = /** @type {Root} */ (fromMarkdown(output))
 
       normalizeHeadings(actual)
-      removePosition(actual, true)
-      removePosition(expected, true)
+      removePosition(actual, {force: true})
+      removePosition(expected, {force: true})
 
       assert.deepEqual(actual, expected)
     })
